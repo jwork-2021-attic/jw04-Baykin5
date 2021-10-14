@@ -8,6 +8,7 @@ import com.anish.monsterarmy.Monster;
 import com.anish.monsterarmy.World;
 import com.anish.monsterarmy.RandomNum;
 import com.anish.monsterarmy.MonsterMatrix;
+import com.anish.monsterarmy.SelectSorter;
 
 
 import asciiPanel.AsciiPanel;
@@ -23,20 +24,46 @@ public class WorldScreen implements Screen {
 
     public WorldScreen() {
         world = new World();
-        matrix= new MonsterMatrix(8, 8,world);
-        RandomNum randomNum=new RandomNum(8*8);
-        for (int i=0;i<64;i++)
+        matrix= new MonsterMatrix(16, 16,world);
+        RandomNum randomNum=new RandomNum(16*16);
+        for (int i=0;i<64;i++)   //red -> yellow 
         {            
             int tempR=randomNum.product();
-            Monster m=new Monster(new Color(255-i*4,255-i*4,i*4),i,world);
+            Monster m=new Monster(new Color(255,4*i,0),i,world);
             matrix.put(tempR,m);
         }
+        for (int i=0;i<64;i++)  //yellow -> green
+        {            
+            int tempR=randomNum.product();
+            Monster m=new Monster(new Color(255-i*4,255,0),i+64,world);
+            matrix.put(tempR,m);
+        }
+        for (int i=0;i<32;i++)  //green -> cyan
+        {            
+            int tempR=randomNum.product();
+            Monster m=new Monster(new Color(0,255,i*8),i+128,world);
+            matrix.put(tempR,m);
+        }
+        for (int i=0;i<64;i++)  //cyan -> blue
+        {            
+            int tempR=randomNum.product();
+            Monster m=new Monster(new Color(0,255-i*4,255),i+160,world);
+            matrix.put(tempR,m);
+        }
+        for (int i=0;i<32;i++)  //blue -> purple
+        {            
+            int tempR=randomNum.product();
+            Monster m=new Monster(new Color(i*4,0,255),i+224,world);
+            matrix.put(tempR,m);
+        }
+
         matrix.putWorld();
 
         mons=matrix.getMons();
 
 
-        BubbleSorter<Monster> b = new BubbleSorter<>();
+        SelectSorter<Monster> b = new SelectSorter<>();
+        //BubbleSorter<Monster> b = new BubbleSorter<>();
         b.load(mons);
         b.sort();
 

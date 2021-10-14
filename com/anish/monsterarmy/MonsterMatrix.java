@@ -25,7 +25,7 @@ public class MonsterMatrix {
     public void putWorld(){
         for (int i=0;i<n;i++)
             for (int j=0;j<m;j++){
-                world.put(matrix[i][j],2*j,2*i);
+                world.put(matrix[i][j],2*j+1,2*i+1);
             }
     }
 

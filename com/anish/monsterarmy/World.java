@@ -2,8 +2,8 @@ package com.anish.monsterarmy;
 
 public class World {
 
-    public static final int WIDTH = 40;
-    public static final int HEIGHT = 20;
+    public static final int WIDTH = 33;
+    public static final int HEIGHT = 33;
 
     private Tile<Thing>[][] tiles;
 
